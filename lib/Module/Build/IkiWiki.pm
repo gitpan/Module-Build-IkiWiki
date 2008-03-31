@@ -65,7 +65,7 @@ __END__
 
 =head1 NAME
 
-Module::Build::IkiWiki - Add to develop Ikiwiki plugins 
+Module::Build::IkiWiki - Extension for develop Ikiwiki plugins 
 
 =head1 VERSION
 

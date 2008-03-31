@@ -1,9 +1,9 @@
 ---
 name: Module-Build-IkiWiki
-version: 0.0.2
+version: 0.0.3
 author:
   - '"Víctor Moral" <victor@taquiones.net>'
-abstract: Add to develop Ikiwiki plugins
+abstract: Extension for develop Ikiwiki plugins
 license: gpl
 resources:
   homepage: http://taquiones.net/software/factory/module-build-ikiwiki.html

@@ -1,0 +1,12 @@
+libmodule-build-ikiwiki-perl (0.0.3) unstable; urgency=low
+
+  * Added debian packaging files.
+  * Minor corrections in the documentation.
+
+ -- Victor Moral <victor@taquiones.net>  Mon, 31 Mar 2008 14:34:47 +0200
+
+libmodule-build-ikiwiki-perl (0.0.2) unstable; urgency=low
+
+  * Initial Release.
+
+ -- Victor Moral <victor@taquiones.net>  Mon, 31 Mar 2008 12:32:21 +0200
