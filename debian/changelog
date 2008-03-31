@@ -1,3 +1,9 @@
+libmodule-build-ikiwiki-perl (0.0.4) unstable; urgency=low
+
+  * Change the package synopsis and description.
+
+ -- Victor Moral <victor@taquiones.net>  Mon, 31 Mar 2008 19:10:13 +0200
+
 libmodule-build-ikiwiki-perl (0.0.3) unstable; urgency=low
 
   * Added debian packaging files.

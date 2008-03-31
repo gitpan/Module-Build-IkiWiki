@@ -6,7 +6,7 @@ my $builder = Module::Build->new(
     module_name         => 'Module::Build::IkiWiki',
     license             => 'gpl',
     dist_author         => '"Víctor Moral" <victor@taquiones.net>',
-    dist_version        => '0.0.3',
+    dist_version        => '0.0.4',
     requires => {
         'Test::More'        => 0,
         'Module::Build'     =>  '>= 0.26',

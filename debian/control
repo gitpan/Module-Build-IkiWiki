@@ -10,7 +10,10 @@ Homepage: http://taquiones.net/software/factory/module-build-ikiwiki.html
 Package: libmodule-build-ikiwiki-perl
 Architecture: all
 Depends: ${perl:Depends}, ${misc:Depends}, libmodule-build-perl (>= 0.26)
-Description: Module::Build extension for develop Ikiwiki plugins.
- The goal of this module is build and install IkiWiki plugins in Perl,
- subclassing the Module::Build and adding some extra funcionalites to it.
+Description: Build and install IkiWiki plugins 
+ Subclass the Module::Build package and adds new items to the install process.
+ .
+ These items are templates and style sheets files and they are installed in the
+ /usr/share/ikiwiki/templates and /usr/share/ikiwiki/basewiki directories
+ respectively.
  .

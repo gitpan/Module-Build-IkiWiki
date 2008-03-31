@@ -1,5 +1,12 @@
 Revision history for Module-Build-IkiWiki
 
+- 0.0.4 lun mar 31 19:11:44 CEST 2008
+    * Minor changes in the debian/control file.
+
+- 0.0.3 mon mar 31 14:34:47 CEST 2008
+    * Added debian packaging files.
+    * Minor corrections in the documentation.
+
 - 0.0.2 lun mar 31 12:16:52 CEST 2008
     * Minor fixes in the test scripts.
 
