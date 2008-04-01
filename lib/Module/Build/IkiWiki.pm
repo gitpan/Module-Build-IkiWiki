@@ -4,15 +4,19 @@ use warnings;
 use strict;
 use Carp;
 
+use File::Basename;
 use File::Spec;
 
-our $VERSION    =   '0.0.1';
+our $VERSION    =   '0.0.3';
+
+# flag for fake installations
+my  $_fake_install  =   0;
 
 # Module implementation here
 sub new {
-    my  ($class,@params)    =   @_;
-    my  $self   = $class->SUPER::new( @params );
-    my  $prop   = $self->{ properties };
+    my  ($class,@params)    = @_;
+    my  $self               = $class->SUPER::new( @params );
+    my  $prop               = $self->_get_prop();
     
     my  %ikiwiki_paths  =   (
             'templates' =>  q(/usr/share/ikiwiki/templates),
@@ -33,31 +37,63 @@ sub new {
 }
 
 sub ACTION_install {
-    my  ($self,@params)   =   @_;
+    my  ($self,@params)     =   @_;
+    my  $prop               =   $self->_get_prop();
 
-    my  $prop   =   $self->{ properties };
-
-    $self->SUPER::ACTION_install( @params );
+    if (not $_fake_install) {
+        $self->SUPER::ACTION_install( @params );
+    }
 
     # process the new file types 
     foreach my $category qw(templates css) {
         # get the final list
         my @source_files = @{ $prop->{ "ikiwiki_${category}" } };
+        my $dest_dir    =   $self->destdir() || '';
 
         if (@source_files) {
             # get the target directory 
-            my $target_dir = File::Spec->catdir( $self->destdir(),
-                                    $prop->{ikiwiki_paths}->{$category});
+            my $target_dir = File::Spec->catdir( 
+                                    $dest_dir,
+                                    $prop->{ikiwiki_paths}->{$category}
+                                );
 
             # install the source files 
             foreach my $source (@source_files) {
-                $self->copy_if_modified( from => $source,
-                                    to_dir => $target_dir );
+                my $to_file = File::Spec->catdir($target_dir, 
+                                    scalar fileparse( $source ) );
+
+                if ($_fake_install) {
+                    print "Installing ${to_file}\n";
+                }
+                else {
+                    $self->copy_if_modified( from => $source,
+                                            to   => $to_file );
+                }                                        
             }
         }
     }            
 
     return;
+}
+
+sub ACTION_fakeinstall {
+    my  ($self,@params)     =   @_;
+    
+    # first dispatch to up 
+    $self->SUPER::ACTION_fakeinstall( @params );
+
+    # and now show our files
+    $_fake_install = 1;
+    $self->ACTION_install( @params );
+    $_fake_install = 0;
+
+    return;
+}
+
+sub _get_prop {
+    my  $self   =   shift;
+
+    return $self->{ properties };   ##Violates 'ProhibitAccessOfPrivateData'
 }
 
 1; # Magic true value required at end of module
@@ -69,7 +105,7 @@ Module::Build::IkiWiki - Extension for develop Ikiwiki plugins
 
 =head1 VERSION
 
-This document describes Module::Build::IkiWiki version 0.0.1
+This document describes Module::Build::IkiWiki version 0.0.2
 
 =head1 SYNOPSIS
 
@@ -95,6 +131,8 @@ This document describes Module::Build::IkiWiki version 0.0.1
 
 The goal of this module is build and install IkiWiki plugins in Perl,
 subclassing the Module::Build and adding some extra funcionalites to it.
+
+For a description of the interface see L<Module::Build::API>.
 
 This is a list of a new parameters in the Module::Build::new method:
 
@@ -127,7 +165,7 @@ List of css stylesheets files to install.
 
 =back
 
-=head1 INTERFACE 
+=head1 SUBROUTINES/METHODS
 
 =head2 new( )
 
@@ -137,6 +175,10 @@ ikiwiki.
 =head2 ACTION_install( )
 
 Install the template and css files of the package.
+
+=head2 ACTION_fakeinstall( )
+
+Show the install actions to the standard output.
 
 =head1 DIAGNOSTICS
 

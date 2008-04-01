@@ -1,3 +1,10 @@
+libmodule-build-ikiwiki-perl (0.0.5) unstable; urgency=low
+
+  * Add the new action fakeinstall to the package.
+  * Fix a bug with the install directory in the templates and css files.
+
+ -- Victor Moral <victor@taquiones.net>  Tue, 01 Apr 2008 11:02:40 +0200
+
 libmodule-build-ikiwiki-perl (0.0.4) unstable; urgency=low
 
   * Change the package synopsis and description.
