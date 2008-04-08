@@ -6,7 +6,7 @@ my $builder = Module::Build->new(
     module_name         => 'Module::Build::IkiWiki',
     license             => 'gpl',
     dist_author         => '"Víctor Moral" <victor@taquiones.net>',
-    dist_version        => '0.0.5',
+    dist_version        => '0.0.6',
     requires => {
         'Test::More'        => 0,
         'Module::Build'     =>  '>= 0.26',
@@ -20,6 +20,9 @@ my $builder = Module::Build->new(
                 'Module-Build-IkiWiki-*',
                 'libmodule-build-ikiwiki-perl*'
     ],
+    script_files        =>  {
+        'scripts/pod2mdwn'  =>  '',
+    },
     create_packlist     =>  0,
     installdirs         =>  q(vendor),
     meta_merge          =>  {

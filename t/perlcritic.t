@@ -2,7 +2,7 @@
 
 use Test::More;
 
-eval "use Test::Perl::Critic;";
+eval "use Test::Perl::Critic( -profile => 't/perlcriticrc' );";
 
 if ($@) {
     plan(

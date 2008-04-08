@@ -1,5 +1,10 @@
 Revision history for Module-Build-IkiWiki
 
+- 0.0.6 lun abr  7 11:33:15 CEST 2008
+    * Fixed minor bugs.
+    * Add a little script that convert POD sources into Markdown sources.
+    * Add a Perl::Critic configuration file.
+
 - 0.0.5 mar abr  1 08:42:01 CEST 2008
     * Add new action 'fakeinstall' to the package.
     * Changes to access a Module::Build's private member properties.
